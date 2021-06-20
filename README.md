@@ -4,4 +4,4 @@
 Сделать сайт по-настоящему интерактивным.
 
 
-https://darkwingduck255.github.io//
+https://github.com/DarkwingDuck255/mesto.git
