@@ -1,0 +1,14 @@
+.element__description {
+    max-width: 282px;
+    width: 100%;
+    padding-top: 0;
+    background-color: #fff;
+    color: black;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 21px;
+    padding-left: 21px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,15 @@
+.main {
+    background-color: black;
+    color: #fff;
+    max-width: 880px;
+    margin: 0 auto;
+    font-family: Inter, 'Times New Roman', sans-serif;
+}
+
+@media screen and (max-width:940px) {
+    .main {
+        margin-left: 19px;
+        margin-right: 19px;
+    }
+    
+}
