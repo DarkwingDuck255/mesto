@@ -3,7 +3,7 @@
     color: #fff;
     max-width: 880px;
     margin: 0 auto;
-    font-family: Inter, 'Times New Roman', sans-serif;
+    font-family: Inter, arial, sans-serif;
 }
 
 @media screen and (max-width:940px) {

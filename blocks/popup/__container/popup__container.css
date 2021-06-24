@@ -1,10 +1,9 @@
 .popup__container {
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 430px;
-    max-height: 330px;
-    height: 100%;
     width: 100%;
     background-color: #fff;
     color: #000;
@@ -16,6 +15,6 @@
     .popup__container {
         max-width: 282px;
         max-height: 322px;
-        margin: auto auto;
+        margin: auto;
     }
 }
