@@ -1,14 +1,14 @@
 .popup__close-button {
-    width: 40px;
-    height: 40px;
+    width: 32px; /*ай хитрецы, до этого кнопка в фигме была 40 пикселей, и я не использую локальну копию. Скриншотов нет, думал не надо делать) Если что в фигме она имеет габариты больше чем написано, не знаю как это работает, но визуально это так. */
+    height: 32px;
     background: url(../../../images/close_button.svg);
     background-repeat: no-repeat;
     background-size:contain;
     border: none;
     position: absolute;
     padding: 0;
-    top: -47px;
-    right: -45.5px;
+    top: -36px;
+    right: -30px;
     transition: 0.3s;
 }
 
@@ -19,9 +19,9 @@
 
 @media screen and (max-width:540px) {
     .popup__close-button {
-        width: 26px;
-        height: 26px;
-        top: -39px;
+        width: 20px; /*здесь та же шляпа, проверял габариты перед отправкой(было 26px) на ревью, не беру цифры с неба когда пишу габариты за исключением отступа этой кнопки, если я прав, а я на 99.9% уверен в этом, дайте мне плюс в карму пожалуйста)), а если нет, объясните по-возможности почему так?*/
+        height: 20px;
+        top: -28px;
         right: 0;
 
     }

@@ -5,8 +5,8 @@ const popupOpenButton = page.querySelector('.profile__edit')
 const profileNameDef = document.querySelector('.profile__name')
 const profileJobDef = document.querySelector('.profile__description')
 const profileForm = document.querySelector('.popup__content')
-const profileName = document.querySelector('.popup__name')
-const profileJob = document.querySelector('.popup__description')
+const profileName = document.querySelector('#name')
+const profileJob = document.querySelector('#job')
 
 const popupVisible = function() {
     popupEdit.classList.add('popup_open')

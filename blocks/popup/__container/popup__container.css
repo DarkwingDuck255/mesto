@@ -8,13 +8,14 @@
     background-color: #fff;
     color: #000;
     border-radius: 10px;
-    margin-top: 195px;
+    /* 
+    Таки он уже был по центру, мне сказали, что не по макету, 
+    ну я влупил ему маржин верхний ~195 px.))
+    */
 }
 
 @media screen and (max-width:540px) {
     .popup__container {
         max-width: 282px;
-        max-height: 322px;
-        margin: auto;
     }
 }

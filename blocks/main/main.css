@@ -13,3 +13,10 @@
     }
     
 }
+@media screen and (max-width:400px) {
+    .main{
+        max-width: 320px;
+        width: 100%;
+        margin: auto;
+    }   
+}
