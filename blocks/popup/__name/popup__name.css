@@ -10,12 +10,13 @@
     line-height: 17px;
 }
 
-.popup__name:last-child {
+.popup__name:last-of-type {
     margin-top: 30px;
 }
 
 @media screen and (max-width:540px) {
     .popup__name {
         max-width: 238px;
+        margin-top: 75px;
     }
 }

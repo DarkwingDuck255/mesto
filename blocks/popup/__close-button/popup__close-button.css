@@ -3,12 +3,12 @@
     height: 32px;
     background: url(../../../images/close_button.svg);
     background-repeat: no-repeat;
-    background-size:contain;
+    background-position: center;
     border: none;
     position: absolute;
     padding: 0;
-    top: -36px;
-    right: -30px;
+    top: -40px;
+    right: -40px;
     transition: 0.3s;
 }
 
@@ -21,6 +21,7 @@
     .popup__close-button {
         width: 20px; /*здесь та же шляпа, проверял габариты перед отправкой(было 26px) на ревью, не беру цифры с неба когда пишу габариты за исключением отступа этой кнопки, если я прав, а я на 99.9% уверен в этом, дайте мне плюс в карму пожалуйста)), а если нет, объясните по-возможности почему так?*/
         height: 20px;
+        background-size: 20px;
         top: -28px;
         right: 0;
 
