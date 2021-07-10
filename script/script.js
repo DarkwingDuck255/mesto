@@ -184,6 +184,7 @@ function cardDelete(event) {
 const cardImagePopupFunction = function (link, name) {
     imagePopup.classList.add('image-popup_open')
     imagePopupImage.src = link
+    imagePopupImage.alt = name
     imagePopupDescription.textContent = name
 } 
 
