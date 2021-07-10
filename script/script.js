@@ -75,10 +75,7 @@ function cardsByDefault(name, link) {
     //слушатель клика по карточке
 
     cardElementImgSrc.addEventListener('click', () => {
-        console.log(link)
-        console.log(name)
         cardImagePopupFunction(link, name)
-        
     })
     imagePopupCloseButton.addEventListener('click', () => {
         imagePopup.classList.remove('image-popup_open')
