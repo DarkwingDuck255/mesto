@@ -47,9 +47,9 @@ const cardTemplateElement = document.querySelector('.elements-template').content
 const cardElementBlock = document.querySelector('.elements')
 const cardDeleteButton = cardTemplateElement.querySelector('.element__delete')
 
-function cardsByDefault(name, link) {
+function createCards(name, link) {
     const cardsGridElement = cardTemplateElement.querySelector('.element').cloneNode(true)
-    const  cardElementText = cardsGridElement.querySelector('.element__text').textContent = name
+    cardsGridElement.querySelector('.element__text').textContent = name;
     const cardElementImgSrc = cardsGridElement.querySelector('.element__image')
     cardElementImgSrc.src = link
     cardElementImgSrc.alt = name; 
@@ -69,7 +69,7 @@ function cardsByDefault(name, link) {
     })
     // Слушатель кнопки удаления карточки
     function setEventListner() {
-        cardsGridElement.querySelector('.element__delete').addEventListener('click', cardDelete)
+        cardsGridElement.querySelector('.element__delete').addEventListener('click', deleteCard)
     }
     
     //слушатель клика по карточке
@@ -77,16 +77,19 @@ function cardsByDefault(name, link) {
     cardElementImgSrc.addEventListener('click', () => {
         cardImagePopupFunction(link, name)
     })
-    imagePopupCloseButton.addEventListener('click', () => {
-        imagePopup.classList.remove('image-popup_open')
-    })
+
 
     return cardsGridElement
     
 }
+// слушатель клика по закрытию попапа картинки
+imagePopupCloseButton.addEventListener('click', () => {
+    imagePopup.classList.remove('popup_open')
+})
+
 
 initialCards.forEach(function(element) {
-    cardElementBlock.append(cardsByDefault(element.name, element.link))
+    cardElementBlock.append(createCards(element.name, element.link))
 });
 
 
@@ -115,16 +118,6 @@ popupOpenButton.addEventListener('click', popupVisible)
 popupCloseButton.addEventListener('click', popupInvisible)
 profileForm.addEventListener('submit', profileEdit)
 
-//Попап картинки
-
-
-
-// const imagePopupToggle = function() {
-//     imagePopup.classList.toggle('image-popup_open')
-// }
-
-// imagePopupCloseButton.addEventListener('click', imagePopupToggle)
-
 
 // Попап добавления новой карточки
 
@@ -147,7 +140,6 @@ addCardButton.addEventListener('click', addCardFunction)
 addCardPopupCloseButton.addEventListener('click', addCardFunctionClose)
 
 
-
 //Добавление новой карточки
 
 const cardNameTitle = document.querySelector('.element__text')
@@ -158,7 +150,7 @@ const addingNewCard = function(evt) {
     evt.preventDefault()
     const name = addCardNameTextValue.value
     const link = addCardLinkValue.value
-    cardElementBlock.prepend(cardsByDefault(name, link))
+    cardElementBlock.prepend(createCards(name, link))
     addCardFunctionClose()
     addCardNameTextValue.value = ""
     addCardLinkValue.value = ""
@@ -168,7 +160,7 @@ newImageForm.addEventListener('submit', addingNewCard)
 
 //Функция удаления карточки
 
-function cardDelete(event) {
+function deleteCard(event) {
     const card = event.target.closest('.element');
     card.remove();
   }
@@ -179,7 +171,7 @@ function cardDelete(event) {
 }
 // функция открытия попапа
 const cardImagePopupFunction = function (link, name) {
-    imagePopup.classList.add('image-popup_open')
+    imagePopup.classList.add('popup_open')
     imagePopupImage.src = link
     imagePopupImage.alt = name
     imagePopupDescription.textContent = name
