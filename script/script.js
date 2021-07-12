@@ -84,7 +84,7 @@ function createCards(name, link) {
 }
 // слушатель клика по закрытию попапа картинки
 imagePopupCloseButton.addEventListener('click', () => {
-    imagePopup.classList.remove('popup_open')
+    closePopup(imagePopup)
 })
 
 
@@ -95,14 +95,14 @@ initialCards.forEach(function(element) {
 
 //попап
 
-const popupVisible = function () {
-    popupEdit.classList.add('popup_open')
+const setPopupVisible = function () {
+    openPopup(popupEdit)
     profileName.value = profileNameDef.textContent
     profileJob.value = profileJobDef.textContent
 }
 
-const popupInvisible = function () {
-    popupEdit.classList.remove('popup_open');
+const setPopupInvisible = function () {
+    closePopup(popupEdit)
 }
 
 
@@ -110,12 +110,12 @@ const profileEdit = function (evt) {
     evt.preventDefault()
     profileNameDef.textContent = profileName.value
     profileJobDef.textContent = profileJob.value
-    popupInvisible()
+    setPopupInvisible()
 }
 
 
-popupOpenButton.addEventListener('click', popupVisible)
-popupCloseButton.addEventListener('click', popupInvisible)
+popupOpenButton.addEventListener('click', setPopupVisible)
+popupCloseButton.addEventListener('click', setPopupInvisible)
 profileForm.addEventListener('submit', profileEdit)
 
 
@@ -169,11 +169,20 @@ function deleteCard(event) {
     const like = event.target.closest('.element__like')
     like.toggle('.element__like-active')
 }
-// функция открытия попапа
+// функция открытия попапа с картинкой 
 const cardImagePopupFunction = function (link, name) {
-    imagePopup.classList.add('popup_open')
+    openPopup(imagePopup)
     imagePopupImage.src = link
     imagePopupImage.alt = name
     imagePopupDescription.textContent = name
 } 
+//функция открытия ЛЮБОГО попапа
 
+const openPopup = function(popup) {
+    popup.classList.add('popup_open')
+}
+
+//функция закрытия ЛЮБОГО попапа
+const closePopup = function(popup) {
+    popup.classList.remove('popup_open')
+}
