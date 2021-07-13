@@ -47,7 +47,7 @@ const cardTemplateElement = document.querySelector('.elements-template').content
 const cardElementBlock = document.querySelector('.elements')
 const cardDeleteButton = cardTemplateElement.querySelector('.element__delete')
 
-function createCards(name, link) {
+function createCard(name, link) {
     const cardsGridElement = cardTemplateElement.querySelector('.element').cloneNode(true)
     cardsGridElement.querySelector('.element__text').textContent = name;
     const cardElementImgSrc = cardsGridElement.querySelector('.element__image')
@@ -89,7 +89,7 @@ imagePopupCloseButton.addEventListener('click', () => {
 
 
 initialCards.forEach(function(element) {
-    cardElementBlock.append(createCards(element.name, element.link))
+    cardElementBlock.append(createCard(element.name, element.link))
 });
 
 
@@ -129,11 +129,11 @@ const addCardNameTextValue = document.querySelector('#new-card-title')
 
 
 const addCardFunction = function () {
-    addCardPopup.classList.add('popup_open')
+    openPopup(addCardPopup)
 }
 
 const addCardFunctionClose = function () {
-    addCardPopup.classList.remove('popup_open')
+    closePopup(addCardPopup)
 }
 
 addCardButton.addEventListener('click', addCardFunction)
@@ -150,7 +150,7 @@ const addingNewCard = function(evt) {
     evt.preventDefault()
     const name = addCardNameTextValue.value
     const link = addCardLinkValue.value
-    cardElementBlock.prepend(createCards(name, link))
+    cardElementBlock.prepend(createCard(name, link))
     addCardFunctionClose()
     addCardNameTextValue.value = ""
     addCardLinkValue.value = ""
