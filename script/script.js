@@ -180,9 +180,25 @@ const cardImagePopupFunction = function (link, name) {
 
 const openPopup = function(popup) {
     popup.classList.add('popup_open')
+    popup.addEventListener('click', closePopupByClickOnOverlay)
+    document.addEventListener('keydown', closeByEscape)
 }
 
 //функция закрытия ЛЮБОГО попапа
 const closePopup = function(popup) {
     popup.classList.remove('popup_open')
+}
+
+function closePopupByClickOnOverlay(evt) {
+    if (evt.target.classList.contains('popup')) {
+        closePopup(document.querySelector('.popup_open'))
+        
+    }    
+}
+
+function closeByEscape(evt) {
+    if(evt.key === 'Escape') {
+        closePopup(document.querySelector('.popup_open'))
+    }
+    
 }
