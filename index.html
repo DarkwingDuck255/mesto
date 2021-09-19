@@ -50,7 +50,7 @@
         </template>
         <!--Попап картинки-->
 
-        <div class="image-popup">
+        <div class="popup image-popup">
             <div class="image-popup__wrap">
                 <button class="image-popup__close-button" type="button" id="#image-popup__close-button"></button>
                 <img class="image-popup__image"
@@ -59,7 +59,7 @@
             </div>
         </div>
         <!--ПОПАП-->
-        <div class="popup">
+        <div class="popup" id="profile-popup">
             <div class="popup__container">
                 <form class="popup__content popup__form" name="popup" novalidate autocomplete="off">
                     <h2 class="popup__header">Редактировать профиль</h2>
@@ -74,7 +74,7 @@
         </div>
         <div class="popup" id="add-image-popup">
             <div class="popup__container">
-                <form class="popup__content popup__form" name="add-image" id="new-image-form">
+                <form class="popup__content popup__form" name="add-image" id="new-image-form" autocomplete="off">
                     <h2 class="popup__header">Новое место</h2>
                     <input type="text" class="popup__name popup__input" name="new-card-title" id="new-card-title" value=""
                         placeholder="Название" maxlength="30" minlength="2" required>
@@ -94,8 +94,9 @@
             © 2020 Mesto Russia
         </p>
     </footer>
-    <script src="./script/script.js"></script>
     <script src="script/validate.js"></script>
+    <script src="./script/script.js"></script>
+    
 </body>
 
 

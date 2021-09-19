@@ -1,16 +1,21 @@
 const page = document.querySelector('.main')
-const popupEdit = page.querySelector('.popup')
-const popupCloseButton = page.querySelector('.popup__close-button')
+const profileEditPopup = page.querySelector('#profile-popup')
+const profileEditPopupCloseButton = page.querySelector('.popup__close-button')
 const popupOpenButton = page.querySelector('.profile__edit')
-const profileNameDef = document.querySelector('.profile__name')
+const profileNameElement = document.querySelector('.profile__name')
 const profileJobDef = document.querySelector('.profile__description')
 const profileForm = document.querySelector('.popup__content')
-const profileName = document.querySelector('#name')
+const profileNameInput = document.querySelector('#name')
 const profileJob = document.querySelector('#job')
 const imagePopup = document.querySelector('.image-popup')
 const imagePopupImage = imagePopup.querySelector('.image-popup__image')
 const imagePopupCloseButton = imagePopup.querySelector('.image-popup__close-button')
 const imagePopupDescription = imagePopup.querySelector('.image-popup__description')
+const addCardButton = document.querySelector('.profile__add')
+const addCardPopup = document.querySelector('#add-image-popup')
+const addCardPopupCloseButton = document.querySelector('#add-card-close')
+const addCardLinkValue = document.querySelector('#new-card-link')
+const addCardNameTextValue = document.querySelector('#new-card-title')
 
 
 //Карточки при загрузке страницы
@@ -44,15 +49,14 @@ const initialCards = [
 
 
 const cardTemplateElement = document.querySelector('.elements-template').content;
-const cardElementBlock = document.querySelector('.elements')
-const cardDeleteButton = cardTemplateElement.querySelector('.element__delete')
+const cardElementContainer = document.querySelector('.elements')
 
 function createCard(name, link) {
     const cardsGridElement = cardTemplateElement.querySelector('.element').cloneNode(true)
     cardsGridElement.querySelector('.element__text').textContent = name;
-    const cardElementImgSrc = cardsGridElement.querySelector('.element__image')
-    cardElementImgSrc.src = link
-    cardElementImgSrc.alt = name; 
+    const cardElementImg = cardsGridElement.querySelector('.element__image')
+    cardElementImg.src = link
+    cardElementImg.alt = name; 
 
 
     // кнопка лайка
@@ -67,14 +71,10 @@ function createCard(name, link) {
     cardLikeButton.addEventListener('click', (evt) => {
         evt.target.classList.toggle('element__like-active')
     })
-    // Слушатель кнопки удаления карточки
-    function setEventListner() {
-        cardsGridElement.querySelector('.element__delete').addEventListener('click', deleteCard)
-    }
     
     //слушатель клика по карточке
 
-    cardElementImgSrc.addEventListener('click', () => {
+    cardElementImg.addEventListener('click', () => {
         cardImagePopupFunction(link, name)
     })
 
@@ -89,43 +89,39 @@ imagePopupCloseButton.addEventListener('click', () => {
 
 
 initialCards.forEach(function(element) {
-    cardElementBlock.append(createCard(element.name, element.link))
+    cardElementContainer.append(createCard(element.name, element.link))
 });
 
 
-//попап
+//попап Профиля
 
-const setPopupVisible = function () {
-    openPopup(popupEdit)
-    profileName.value = profileNameDef.textContent
+const openProfilePopup = function () {
+    openPopup(profileEditPopup)
+    profileNameInput.value = profileNameElement.textContent
     profileJob.value = profileJobDef.textContent
 }
 
-const setPopupInvisible = function () {
-    closePopup(popupEdit)
+const closeProfilePopup = function () {
+    closePopup(profileEditPopup)
 }
 
 
-const profileEdit = function (evt) {
+const editProfile = function (evt) {
     evt.preventDefault()
-    profileNameDef.textContent = profileName.value
+    profileNameElement.textContent = profileNameInput.value
     profileJobDef.textContent = profileJob.value
-    setPopupInvisible()
+    closeProfilePopup()
 }
 
 
-popupOpenButton.addEventListener('click', setPopupVisible)
-popupCloseButton.addEventListener('click', setPopupInvisible)
-profileForm.addEventListener('submit', profileEdit)
+popupOpenButton.addEventListener('click', openProfilePopup)
+profileEditPopupCloseButton.addEventListener('click', closeProfilePopup)
+profileForm.addEventListener('submit', editProfile)
 
 
 // Попап добавления новой карточки
 
-const addCardButton = document.querySelector('.profile__add')
-const addCardPopup = document.querySelector('#add-image-popup')
-const addCardPopupCloseButton = document.querySelector('#add-card-close')
-const addCardLinkValue = document.querySelector('#new-card-link')
-const addCardNameTextValue = document.querySelector('#new-card-title')
+
 
 
 const addCardFunction = function () {
@@ -136,46 +132,31 @@ const addCardFunctionClose = function () {
     closePopup(addCardPopup)
 }
 
-addCardButton.addEventListener('click', addCardFunction)
-addCardPopupCloseButton.addEventListener('click', addCardFunctionClose)
-
-
 //Добавление новой карточки
 
-const cardNameTitle = document.querySelector('.element__text')
-const cardImageSrc = document.querySelector('.element__image')
-const newImageForm = document.querySelector('#new-image-form')
+const addCardForm = document.querySelector('#new-image-form')
 
 const addingNewCard = function(evt) {
     evt.preventDefault()
     const name = addCardNameTextValue.value
     const link = addCardLinkValue.value
-    cardElementBlock.prepend(createCard(name, link))
+    cardElementContainer.prepend(createCard(name, link))
     addCardFunctionClose()
     addCardNameTextValue.value = ""
     addCardLinkValue.value = ""
+
 }
 
-newImageForm.addEventListener('submit', addingNewCard)
-
-//Функция удаления карточки
-
-function deleteCard(event) {
-    const card = event.target.closest('.element');
-    card.remove();
-  }
-
-  function cardLikeActive(event) {
-    const like = event.target.closest('.element__like')
-    like.toggle('.element__like-active')
-}
 // функция открытия попапа с картинкой 
+
 const cardImagePopupFunction = function (link, name) {
     openPopup(imagePopup)
     imagePopupImage.src = link
     imagePopupImage.alt = name
     imagePopupDescription.textContent = name
-} 
+}
+
+
 //функция открытия ЛЮБОГО попапа
 
 const openPopup = function(popup) {
@@ -187,6 +168,7 @@ const openPopup = function(popup) {
 //функция закрытия ЛЮБОГО попапа
 const closePopup = function(popup) {
     popup.classList.remove('popup_open')
+    popup.removeEventListener('click', closePopupByClickOnOverlay)
 }
 
 function closePopupByClickOnOverlay(evt) {
@@ -202,3 +184,22 @@ function closeByEscape(evt) {
     }
     
 }
+// Слушатель валидности инпутов для изменения статуса кнопки
+
+
+addCardButton.addEventListener('click', () => {
+    const formSelector = document.querySelector('#new-image-form')
+    const submitButtonSelector = formSelector.querySelector('.popup__submit')
+    const inactiveButtonClass = formSelector.querySelector('popup__submit_inactive')
+    formSelector.reset()
+    const inputList = Array.from(formSelector.querySelectorAll(objectsOfValidation.inputSelector))
+    toggleButtonState(formSelector, inputList, submitButtonSelector, inactiveButtonClass)
+})
+
+// слушатель добавления новой карточки
+
+addCardForm.addEventListener('submit', addingNewCard)
+
+// слушатели открытия и закрытия попапов
+addCardButton.addEventListener('click', addCardFunction)
+addCardPopupCloseButton.addEventListener('click', addCardFunctionClose)

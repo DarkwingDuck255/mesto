@@ -38,3 +38,8 @@
 @import url(../blocks/popup/__error-descr/popup__error-descr.css);
 @import url(../blocks/popup/__name/_error/popup__name-error.css);
 @import url(../blocks/popup/__name/_error/popup__name-error_active.css);
+@import url(../blocks/popup/__new-card-title-error/popup__new-card-title-error.css);
+@import url(../blocks/popup/__name/_error/popup__name-error.css);
+@import url(../blocks/popup/__name/_error/popup__job-error.css);
+@import url(../blocks/popup/__new-card-title-error/popup__new-card-title-error.css);
+@import url(../blocks/popup/__new-card-link-error/popup__new-card-link-error.css);
