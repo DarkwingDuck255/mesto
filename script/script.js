@@ -1,12 +1,12 @@
 const page = document.querySelector('.main')
 const profileEditPopup = page.querySelector('#profile-popup')
 const profileEditPopupCloseButton = page.querySelector('.popup__close-button')
-const popupOpenButton = page.querySelector('.profile__edit')
+const profilePopupOpenButton = page.querySelector('.profile__edit')
 const profileNameElement = document.querySelector('.profile__name')
 const profileJobDef = document.querySelector('.profile__description')
 const profileForm = document.querySelector('.popup__content')
 const profileNameInput = document.querySelector('#name')
-const profileJob = document.querySelector('#job')
+const profileJobInput = document.querySelector('#job')
 const imagePopup = document.querySelector('.image-popup')
 const imagePopupImage = imagePopup.querySelector('.image-popup__image')
 const imagePopupCloseButton = imagePopup.querySelector('.image-popup__close-button')
@@ -14,8 +14,9 @@ const imagePopupDescription = imagePopup.querySelector('.image-popup__descriptio
 const addCardButton = document.querySelector('.profile__add')
 const addCardPopup = document.querySelector('#add-image-popup')
 const addCardPopupCloseButton = document.querySelector('#add-card-close')
-const addCardLinkValue = document.querySelector('#new-card-link')
-const addCardNameTextValue = document.querySelector('#new-card-title')
+const addCardLinkInput = document.querySelector('#new-card-link')
+const addCardNameTextInput = document.querySelector('#new-card-title')
+const addCardForm = document.querySelector('#new-image-form')
 
 
 //Карточки при загрузке страницы
@@ -95,56 +96,53 @@ initialCards.forEach(function(element) {
 
 //попап Профиля
 
-const openProfilePopup = function () {
+const openProfilePopupHandler = function () {
     openPopup(profileEditPopup)
     profileNameInput.value = profileNameElement.textContent
-    profileJob.value = profileJobDef.textContent
+    profileJobInput.value = profileJobDef.textContent
 }
 
-const closeProfilePopup = function () {
+const closeProfilePopupHandler = function () {
+    closePopup(profileEditPopup)
+}
+
+const editProfileHandler = function (evt) {
+    evt.preventDefault()
+    profileNameElement.textContent = profileNameInput.value
+    profileJobDef.textContent = profileJobInput.value
     closePopup(profileEditPopup)
 }
 
 
-const editProfile = function (evt) {
-    evt.preventDefault()
-    profileNameElement.textContent = profileNameInput.value
-    profileJobDef.textContent = profileJob.value
-    closeProfilePopup()
-}
+profilePopupOpenButton.addEventListener('click', openProfilePopupHandler)
+profileEditPopupCloseButton.addEventListener('click', closeProfilePopupHandler)
+profileForm.addEventListener('submit', editProfileHandler)
 
 
-popupOpenButton.addEventListener('click', openProfilePopup)
-profileEditPopupCloseButton.addEventListener('click', closeProfilePopup)
-profileForm.addEventListener('submit', editProfile)
+// открытие попапа добавления новой карточки
 
-
-// Попап добавления новой карточки
-
-
-
-
-const addCardFunction = function () {
+const openAddCardPopupHandler = function () {
     openPopup(addCardPopup)
 }
 
-const addCardFunctionClose = function () {
+const closeAddCardPopupHandler = function () {
     closePopup(addCardPopup)
 }
 
 //Добавление новой карточки
 
-const addCardForm = document.querySelector('#new-image-form')
-
-const addingNewCard = function(evt) {
+const addingNewCardHandler = function(evt) {
     evt.preventDefault()
-    const name = addCardNameTextValue.value
-    const link = addCardLinkValue.value
+    const name = addCardNameTextInput.value
+    const link = addCardLinkInput.value
     cardElementContainer.prepend(createCard(name, link))
-    addCardFunctionClose()
-    addCardNameTextValue.value = ""
-    addCardLinkValue.value = ""
+    closePopup(addCardPopup)
 
+    const buttonElement = addCardForm.querySelector('.popup__submit')
+    disableSubmitButton(buttonElement, 'popup__submit_inactive')
+
+    addCardNameTextInput.value = ""
+    addCardLinkInput.value = ""
 }
 
 // функция открытия попапа с картинкой 
@@ -161,45 +159,43 @@ const cardImagePopupFunction = function (link, name) {
 
 const openPopup = function(popup) {
     popup.classList.add('popup_open')
-    popup.addEventListener('click', closePopupByClickOnOverlay)
-    document.addEventListener('keydown', closeByEscape)
+    popup.addEventListener('click', closePopupByClickOnOverlayHandler)
+    document.addEventListener('keydown', closeByEscapeHandler)
 }
 
 //функция закрытия ЛЮБОГО попапа
 const closePopup = function(popup) {
     popup.classList.remove('popup_open')
-    popup.removeEventListener('click', closePopupByClickOnOverlay)
+    popup.removeEventListener('click', closePopupByClickOnOverlayHandler)
+    document.removeEventListener('keydown', closeByEscapeHandler)
 }
 
-function closePopupByClickOnOverlay(evt) {
+function closePopupByClickOnOverlayHandler(evt) {
     if (evt.target.classList.contains('popup')) {
-        closePopup(document.querySelector('.popup_open'))
-        
+        closePopup(evt.target)
     }    
 }
 
-function closeByEscape(evt) {
+function closeByEscapeHandler(evt) {
     if(evt.key === 'Escape') {
         closePopup(document.querySelector('.popup_open'))
     }
-    
 }
 // Слушатель валидности инпутов для изменения статуса кнопки
 
 
-addCardButton.addEventListener('click', () => {
-    const formSelector = document.querySelector('#new-image-form')
-    const submitButtonSelector = formSelector.querySelector('.popup__submit')
-    const inactiveButtonClass = formSelector.querySelector('popup__submit_inactive')
-    formSelector.reset()
-    const inputList = Array.from(formSelector.querySelectorAll(objectsOfValidation.inputSelector))
-    toggleButtonState(formSelector, inputList, submitButtonSelector, inactiveButtonClass)
-})
+// addCardButton.addEventListener('click', () => {
+//     const formSelector = document.querySelector('#new-image-form')
+//     const submitButtonSelector = formSelector.querySelector('.popup__submit')
+//     const inactiveButtonClass = formSelector.querySelector('popup__submit_inactive')
+//     formSelector.reset()
+//     const inputList = Array.from(formSelector.querySelectorAll(objectsOfValidation.inputSelector))
+//     toggleButtonState(formSelector, inputList, submitButtonSelector, inactiveButtonClass)
+// })
 
 // слушатель добавления новой карточки
 
-addCardForm.addEventListener('submit', addingNewCard)
-
+addCardForm.addEventListener('submit', addingNewCardHandler)
 // слушатели открытия и закрытия попапов
-addCardButton.addEventListener('click', addCardFunction)
-addCardPopupCloseButton.addEventListener('click', addCardFunctionClose)
+addCardButton.addEventListener('click', openAddCardPopupHandler)
+addCardPopupCloseButton.addEventListener('click', closeAddCardPopupHandler)
