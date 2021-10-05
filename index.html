@@ -35,10 +35,10 @@
         <section class="elements">
 
         </section>
-        <template class="elements-template">
+        <template class="elements-template" id='cards-template'>
 
             <div class="element">
-                <img src="#" alt="" class="element__image">
+                <img src="#" alt="" class="element__image" id='s'>
                 <button type="button" class="element__delete"></button>
                 <div class="element__description">
                     <h2 class="element__text"></h2>
@@ -68,7 +68,7 @@
                     <input type="text" class="popup__name popup__input" name="job" id="job" value="" maxlength="200" minlength="2" required>
                     <span class="popup__job-error"></span>
                     <button type="submit " class="popup__submit popup__button">Сохранить</button>
-                    <button class="popup__close-button " type="button"></button>
+                    <button class="popup__close-button" id='profile-popup-close-button' type="button"></button>
                 </form>
             </div>
         </div>
@@ -94,8 +94,9 @@
             © 2020 Mesto Russia
         </p>
     </footer>
-    <script src="script/validate.js"></script>
-    <script src="./script/script.js"></script>
+    <script src="./script/script.js" type="module"></script>
+    <script src="script/FormValidator.js" type="module"></script>
+
     
 </body>
 

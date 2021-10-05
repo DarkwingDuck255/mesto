@@ -1,4 +1,4 @@
-const objectsOfValidation = {
+export const objectsOfValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
@@ -85,7 +85,7 @@ const objectsOfValidation = {
 
 //класс
 
-class FormValidator {
+export class FormValidator {
   constructor () {
     this._formSelector = objectsOfValidation.formSelector
     this._inputSelector = objectsOfValidation.inputSelector
