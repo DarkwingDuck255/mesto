@@ -1,9 +1,9 @@
-import { openPopup, imagePopup, imagePopupImage, imagePopupDescription } from './script.js'
+import { openPopup, imagePopup, imagePopupImage, imagePopupDescription, cardTemplateSelector } from './script.js'
 export class Card {
     constructor(data) {
         this._cardName = data.name
         this._cardLink = data.link
-        this._templateSelector = '#cards-template'
+        this._templateSelector = cardTemplateSelector
     }
     _getTemplate() {
             const cardElement = document
@@ -18,13 +18,13 @@ export class Card {
 
     getCard() {
         
-        this._someImage = this._getTemplate()
+        this._someCard = this._getTemplate()
         this._setEventListeners()
-        this._someImage.querySelector('.element__image').alt = this._cardName
-        this._someImage.querySelector('.element__image').src = this._cardLink
-        this._someImage.querySelector('.element__text').textContent = this._cardName
+        this._someCard.querySelector('.element__image').alt = this._cardName
+        this._someCard.querySelector('.element__image').src = this._cardLink
+        this._someCard.querySelector('.element__text').textContent = this._cardName
 
-        return this._someImage
+        return this._someCard
     }
 
     _openCardImagePopup() {
@@ -44,10 +44,10 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._someImage.querySelector('.element__image').addEventListener('click', () => {
+        this._someCard.querySelector('.element__image').addEventListener('click', () => {
             this._openCardImagePopup()
         })
-        this._someImage.querySelector('.element__like').addEventListener('click', this._likeCard)
-        this._someImage.querySelector('.element__delete').addEventListener('click', this._deleteCard)
+        this._someCard.querySelector('.element__like').addEventListener('click', this._likeCard)
+        this._someCard.querySelector('.element__delete').addEventListener('click', this._deleteCard)
     }
 }
