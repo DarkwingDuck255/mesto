@@ -10,25 +10,25 @@ export const objectsOfValidation = {
 //класс
 
 export class FormValidator {
-  constructor (data, formSelector) {
+  constructor (data, formElement) {
     this._inputSelector = data.inputSelector
     this._submitButtonSelector = data.submitButtonSelector
     this._inactiveButtonClass = data.inactiveButtonClass
     this._inputErrorClass = data.inputErrorClass
     this._errorClass = data.errorClass
-    this._formSelector = formSelector
-    this._inputList = this._formSelector.querySelectorAll(this._inputSelector)
-    this._buttonElemment = this._formSelector.querySelector(this._submitButtonSelector)
+    this._formElement = formElement
+    this._inputList = this._formElement.querySelectorAll(this._inputSelector)
+    this._buttonElemment = this._formElement.querySelector(this._submitButtonSelector)
     this._inputListArr = Array.from(this._inputList)
   }
   _showInputError(inputElement){
-    const error = this._formSelector.querySelector(`.popup__${inputElement.id}-error`)
+    const error = this._formElement.querySelector(`.popup__${inputElement.id}-error`)
     inputElement.classList.add(this._inputErrorClass)
     error.textContent = inputElement.validationMessage
     error.classList.add(this._errorClass)
   }
   _hideInputError(inputElement){
-    const error = this._formSelector.querySelector(`.popup__${inputElement.id}-error`)
+    const error = this._formElement.querySelector(`.popup__${inputElement.id}-error`)
     inputElement.classList.remove(this._inputErrorClass)
     error.classList.remove(this._errorClass)
     error.textContent = ""
@@ -73,16 +73,16 @@ export class FormValidator {
 
   _toggleButtonState(){
     if (this._hasInvalidInput()) {
-      this._disableSubmitButton(this._buttonElemment, this._inactiveButtonClass)
+      this._disableSubmitButton()
     }
     else {
-      this._enableSubmitButton(this._buttonElemment, this._inactiveButtonClass)
+      this._enableSubmitButton()
     }
   }
 
 
   _setEventListners = () => {
-    this._formSelector.addEventListener('submit', event => {
+    this._formElement.addEventListener('submit', event => {
       event.preventDefault()
     })
     this._inputList.forEach((inputElement) => {

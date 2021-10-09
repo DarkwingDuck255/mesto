@@ -93,6 +93,8 @@ profileForm.addEventListener('submit', editProfileHandler)
 
 const openAddCardPopupHandler = function () {
     openPopup(addCardPopup)
+    addCardLinkInput.value = ''
+    addCardNameTextInput.value = ''
     addCardPopupValidate.resetValidation()
 }
 
@@ -113,15 +115,13 @@ const closePopup = function(popup) {
     popup.classList.remove('popup_open')
     popup.removeEventListener('click', closePopupByClickOnOverlayHandler)
     document.removeEventListener('keydown', closeByEscapeHandler)
-    addCardLinkInput.value = ''
-    addCardNameTextInput.value = ''
+
 }
 
 function closePopupByClickOnOverlayHandler(evt) {
     if (evt.target.classList.contains('popup')) {
         closePopup(evt.target)
-        addCardLinkInput.value = ''
-        addCardNameTextInput.value = ''
+
     }    
 }
 
@@ -135,8 +135,7 @@ function closeByEscapeHandler(evt) {
 addCardButton.addEventListener('click', openAddCardPopupHandler)
 addCardPopupCloseButton.addEventListener('click', () => {
 closeAddCardPopupHandler()
-addCardLinkInput.value = ''
-addCardNameTextInput.value = ''
+
 
 })
 
@@ -157,8 +156,7 @@ buttonElement.addEventListener('click', function(event) {
     createCard(newCard)
     cardElementContainer.prepend(createCard(newCard))
     closePopup(addCardPopup)
-    addCardLinkInput.value = ''
-    addCardNameTextInput.value = ''
+
   })
 
 // отображение карточек
