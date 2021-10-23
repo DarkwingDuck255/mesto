@@ -27,14 +27,6 @@ export class Card {
         return this._someCard
     }
 
-    // _openCardImagePopup() {
-        
-    //     openPopup(imagePopup)
-    //     imagePopupImage.src = this._cardLink
-    //     imagePopupImage.alt = this._cardName
-    //     imagePopupDescription.textContent = this._cardName
-    // }
-
     _likeCard(evt) {
         evt.target.classList.toggle('element__like-active')
     }
@@ -44,9 +36,6 @@ export class Card {
     }
 
     _setEventListeners() {
-        // this._someCard.querySelector('.element__image').addEventListener('click', () => {
-        //     this._openCardImagePopup()
-        // })
         this._someCard.querySelector('.element__like').addEventListener('click', this._likeCard)
         this._someCard.querySelector('.element__delete').addEventListener('click', this._deleteCard)
         this._someCard.querySelector('.element__image').addEventListener('click', this._handleCardClick);

@@ -2,13 +2,13 @@ export class Section {
     constructor({items, renderer}, containerSelector) {
         this._items = items
         this._renderer = renderer
-        this._containerSelector = containerSelector
+        this._container = containerSelector
 
     }
 
 
     addItem(someItem){
-        this._containerSelector.prepend(someItem)
+        this._container.prepend(someItem)
     }
 
     renderer() {

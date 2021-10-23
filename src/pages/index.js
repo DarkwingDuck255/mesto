@@ -1,3 +1,13 @@
+import { Card } from "../components/Card.js"
+import { FormValidator, objectsOfValidation } from '../components/FormValidator.js'
+import PopupWithForm from "../components/PopupWithForm.js"
+import PopupWithImage from "../components/PopupWithImage.js"
+import { Section } from "../components/Section.js"
+import UserInfo from "../components/UserInfo.js"
+import '../pages/index.css'
+
+
+
 const page = document.querySelector('.main')
 const profileEditPopup = page.querySelector('#profile-popup')
 const profileEditPopupCloseButton = page.querySelector('#profile-popup-close-button')
@@ -94,17 +104,13 @@ const userInfo = new UserInfo({
 // Попап формы профиля
 
 const profilePopup = new PopupWithForm(profileEditPopup, {
-    formSubmit: (userInfo) =>{
-        const userProfile = new UserInfo({
-            name: profileNameElement,
-            job: profileJobDef
-        })
-        userProfile.setUserInfo(userInfo)
+    formSubmit: (profile) =>{
+        userInfo.setUserInfo(profile)
     }
     
 }) 
 
-// Функция открытия попапа профиля и подставка значений в форму
+// Функция открытия попапа профиля и подстановка значений в форму
 
 const profileInputValuesAndOpenPopup = () => {
     const profileInputs = userInfo.getUserInfo()
@@ -117,16 +123,12 @@ const profileInputValuesAndOpenPopup = () => {
 
 // форма добавления картинки
 const cardPopupForm = new PopupWithForm(addCardPopup, {
-    formSubmit: () => {
-        const newCard = {
-            link: addCardLinkInput.value,
-            name: addCardNameTextInput.value
-        }
+    formSubmit: (newCard) => {
         const newCardElement = createCard(newCard)
         defaultCards.addItem(newCardElement)
     }
 }) 
-// Функция открытия попапа жлавления картинки и подставка значений в форму
+// Функция открытия попапа добавления картинки и подставка значений в форму
 const cardPopupValuesAndOpenPopup = () => {
     addCardPopupValidate.resetValidation()
     cardPopupForm.open()
@@ -149,10 +151,4 @@ addCardPopupValidate.enableValidation()
 
 
 
-import { Card } from "../components/Card.js"
-import { FormValidator, objectsOfValidation } from '../components/FormValidator.js'
-import PopupWithForm from "../components/PopupWithForm.js"
-import PopupWithImage from "../components/PopupWithImage.js"
-import { Section } from "../components/Section.js"
-import UserInfo from "../components/UserInfo.js"
-import '../pages/index.css'
+
