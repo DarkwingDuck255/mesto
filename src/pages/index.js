@@ -6,65 +6,19 @@ import { Section } from "../components/Section.js"
 import UserInfo from "../components/UserInfo.js"
 import '../pages/index.css'
 
-
-
-const page = document.querySelector('.main')
-const profileEditPopup = page.querySelector('#profile-popup')
-const profileEditPopupCloseButton = page.querySelector('#profile-popup-close-button')
-const profilePopupOpenButton = page.querySelector('.profile__edit')
-const profileNameElement = document.querySelector('.profile__name')
-const profileJobDef = document.querySelector('.profile__description')
-const profileForm = document.querySelector('.popup__content')
-const profileNameInput = document.querySelector('#name')
-const profileJobInput = document.querySelector('#job')
-export const imagePopup = document.querySelector('.image-popup')
-export const imagePopupImage = imagePopup.querySelector('.image-popup__image')
-const imagePopupCloseButton = imagePopup.querySelector('.image-popup__close-button')
-export const imagePopupDescription = imagePopup.querySelector('.image-popup__description')
-const addCardButton = document.querySelector('.profile__add')
-const addCardPopup = document.querySelector('#add-image-popup')
-const addCardPopupCloseButton = document.querySelector('#add-card-close')
-const addCardLinkInput = document.querySelector('#new-card-link')
-const addCardNameTextInput = document.querySelector('#new-card-title')
-const addCardForm = document.querySelector('#new-image-form')
-const cardTemplateElement = document.querySelector('.elements-template').content
-const cardElementContainer = document.querySelector('.elements')
-export const imageElement = document.querySelector('.element__image')
-export const imageElementDescr = document.querySelector('.element__text')
-export const cardTemplateSelector = '#cards-template'
-const cardLikeButton = document.querySelector('.element__like')
-const buttonElement = addCardForm.querySelector('.popup__submit')
-// кнопка удаления
-const cardDeleteButton = document.querySelector('.element__delete')
-
-//Карточки при загрузке страницы
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+import {
+    profileEditPopup,
+    profilePopupOpenButton,
+    profileNameElement,
+    initialCards,
+    cardElementContainer,
+    imagePopup,
+    profileJobDef,
+    addCardPopup,
+    addCardButton,
+    profileNameInput,
+    profileJobInput
+    } from '../utils/components.js'
 
 
 
