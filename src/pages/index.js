@@ -17,8 +17,11 @@ import {
     addCardPopup,
     addCardButton,
     profileNameInput,
-    profileJobInput
-    } from '../utils/components.js'
+    profileJobInput,
+    addCardLinkInput,
+    addCardNameTextInput,
+
+    } from '../utils/constants.js'
 
 
 
@@ -77,9 +80,18 @@ const profileInputValuesAndOpenPopup = () => {
 
 // форма добавления картинки
 const cardPopupForm = new PopupWithForm(addCardPopup, {
-    formSubmit: (newCard) => {
-        const newCardElement = createCard(newCard)
-        defaultCards.addItem(newCardElement)
+    formSubmit: (item) => {
+
+        const newCard = { link: item.newCardLink, name: item.newCardTitle}
+    //    createCard(item)
+        defaultCards.addItem(createCard(newCard))
+        // const newCardElement = {
+            
+        //     link: addCardLinkInput.value,
+        //     name: addCardNameTextInput.value,
+        // }
+        // defaultCards.addItem(createCard(newCardElement))
+        console.log(item)
     }
 }) 
 // Функция открытия попапа добавления картинки и подставка значений в форму
