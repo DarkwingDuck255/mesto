@@ -5,6 +5,7 @@ export default class PopupWithForm extends Popup {
         super(popupSelector)
         this._formSubmit = formSubmit
         this._fromSelector = this._popup.querySelector('.popup__form')
+        this._buttonSelector = this._popup.querySelector('.popup__submit')
     }
 
     _getInputValues() {
@@ -28,5 +29,9 @@ export default class PopupWithForm extends Popup {
             this._formSubmit(this._getInputValues())
             this.close()
         })
+    }
+
+    savingUx() {
+        this._buttonSelector.textContent = 'Сохранение...'
     }
 }

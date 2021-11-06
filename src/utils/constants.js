@@ -28,6 +28,11 @@ export const cardLikeButton = document.querySelector('.element__like')
 export const buttonElement = addCardForm.querySelector('.popup__submit')
 // кнопка удаления
 export const cardDeleteButton = document.querySelector('.element__delete')
+export const confirmationPopupSelector = document.querySelector('#confirmation-popup')
+export const avatarEditButton = document.querySelector('.profile__avatar-edit-button')
+export const avatarEditForm = document.querySelector('#update-avatar')
+export const avatarPopupElement = document.querySelector('#avatar-popup')
+export const avatarImage = document.querySelector('.profile__avatar')
 
 //Карточки при загрузке страницы
 

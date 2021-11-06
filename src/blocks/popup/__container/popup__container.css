@@ -2,16 +2,14 @@
     margin: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     max-width: 430px;
     width: 100%;
     background-color: #fff;
     color: #000;
     border-radius: 10px;
-    /* 
-    Таки он уже был по центру, мне сказали, что не по макету, 
-    ну я влупил ему маржин верхний ~195 px.))
-    */
+    flex-direction: column;
+    
 }
 
 @media screen and (max-width:540px) {

@@ -43,3 +43,6 @@
 @import url(../blocks/popup/__name/_error/popup__job-error.css);
 @import url(../blocks/popup/__new-card-title-error/popup__new-card-title-error.css);
 @import url(../blocks/popup/__new-card-link-error/popup__new-card-link-error.css);
+@import url(../blocks/element/__like-wrapper/element__like-wrapper.css);
+@import url(../blocks/element/__like-counter/element__like-counter.css);
+@import url(../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css);

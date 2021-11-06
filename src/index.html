@@ -12,13 +12,14 @@
     <!--ШАПКА-->
     <header class="header">
         <img src="<%=require('./images/logo.svg')%>" class="header__logo" alt="Логотип">
-        <!--<img src="./images/Line.png" class="header__line" alt="Линия">-->
     </header>
     <!--ПРОФИЛЬ-->
     <main>
         <section class="profile">
             <div class="profile__wrap">
-                <img src="<%=require('./images/image.jpg')%>" class="profile__avatar" alt="Жак-Ив">
+                <button type="button" class="profile__avatar-edit-button">
+                    <img src="<%=require('./images/image.jpg')%>" class="profile__avatar avatar" alt="Жак-Ив">
+                </button>
                 <div class="profile__info">
                     <div class="profile__name-wrap">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -41,7 +42,10 @@
                 <button type="button" class="element__delete"></button>
                 <div class="element__description">
                     <h2 class="element__text"></h2>
-                    <button class="element__like" type="button"></button>
+                    <div class="element__like-wrapper">
+                        <button class="element__like" type="button"></button>
+                        <div class="element__like-counter"></div>
+                    </div>
 
                 </div>
             </div>
@@ -75,15 +79,41 @@
             <div class="popup__container">
                 <form class="popup__content popup__form" name="add-image" id="new-image-form" autocomplete="off">
                     <h2 class="popup__header">Новое место</h2>
-                    <input type="text" class="popup__name popup__input" name="newCardTitle" id="new-card-title" value=""
+                    <input type="text" class="popup__name popup__input" name="name" id="new-card-title" value=""
                         placeholder="Название" maxlength="30" minlength="2" required>
                     <span class="popup__new-card-title-error"></span>
-                    <input type="url" class="popup__name popup__input" name="newCardLink" id="new-card-link" value=""
+                    <input type="url" class="popup__name popup__input" name="link" id="new-card-link" value=""
                         placeholder="Ссылка на картинку" required>
                     <span class="popup__new-card-link-error"></span>
                     <button type="submit" class="popup__submit popup__button" id="submit-new-card">Создать</button>
                     <button class="popup__close-button" id="add-card-close" type="button"></button>
                 </form>
+            </div>
+        </div>
+<!-- Попап изменения аватара -->
+        <div class="popup" id="avatar-popup">
+            <div class="popup__container">
+                <h2 class="popup__header">Обновить аватар</h2>
+                
+                <form class="popup__content popup__form" name="update-avatar" id="update-avatar" autocomplete="off">
+                    <input type="url" class="popup__name popup__input" name="avalink" id="avalink" value=""
+                        placeholder="Ссылка на картинку" required>
+                    <span class="popup__avalink-error"></span>
+                    <button type="submit" class="popup__submit popup__button">Сохранить</button>
+                    <button class="popup__close-button" type="button"></button>
+                </form>
+                
+            </div>
+        </div>
+        <!-- Попап удаления карточки -->
+        <div class="popup" id="confirmation-popup">
+            <div class="popup__container">
+                <h2 class="popup__header">Вы уверены?</h2>
+                <form class="popup__content popup__form" name="delete-card-from-srv" id="delete-card-from-srv" novalidate>
+                    <button type="submit" class="popup__submit popup__button">Да</button>
+                    <button class="popup__close-button" id="delete-confirmation-cancel" type="button"></button>
+                </form>
+                
             </div>
         </div>
     </main>
