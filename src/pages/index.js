@@ -75,7 +75,6 @@ function createCard(card) {
         },
         deleteOnClick: () => {
             confirmationPopup.onSubmit(() => {
-                confirmationPopup.savingUx()
                 api.deleteCardFromSrv(aCard)
                 .then(() => {
                     aCard.deleteCard()
