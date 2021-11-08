@@ -14,7 +14,7 @@
 .elements{grid-row-gap:17px;align-items:center;display:grid;grid-template-columns:repeat(auto-fit,minmax(282px,1fr));margin:51px auto 66px;max-width:880px}
 .element{margin:0 auto;max-width:282px;position:relative;width:100%}
 .element__delete{align-items:center;background-color:transparent;background-image:url(images/bin.b48eb8d13fb7df617fae.png);background-repeat:no-repeat;background-size:contain;border:0;box-sizing:border-box;cursor:pointer;height:19px;justify-content:center;margin-right:15px;margin-top:18px;position:absolute;right:0;top:0;width:18px}.element__delete:hover{opacity:.5}
-.element__image{border-radius:10px 10px 0 0;display:flex;height:282px;max-width:282px;-o-object-fit:cover;object-fit:cover;width:100%}
+.element__image{border-radius:10px 10px 0 0;cursor:pointer;display:flex;height:282px;max-width:282px;-o-object-fit:cover;object-fit:cover;width:100%}
 .element__description{align-items:center;background-color:#fff;border-radius:0 0 10px 10px;box-sizing:border-box;color:#000;display:flex;justify-content:space-between;margin:0;max-width:282px;padding:25px 21px 21px 31px;width:100%}
 .element__text{font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .element__like{align-items:center;background:url(images/like.87ed371465c7a6a1cd01.svg);background-repeat:no-repeat;background-size:contain;border:0;box-sizing:border-box;cursor:pointer;height:19px;justify-content:center;width:22px}.element__like:hover{opacity:.5}
