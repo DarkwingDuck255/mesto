@@ -27,11 +27,15 @@ export default class PopupWithForm extends Popup {
         this._popup.addEventListener('submit', (evt) => {
             evt.preventDefault()
             this._formSubmit(this._getInputValues())
-            this.close()
         })
     }
 
-    savingUx() {
-        this._buttonSelector.textContent = 'Сохранение...'
+    savingUx(loading) {
+        if(loading === true) {
+            this._buttonSelector.textContent = 'Сохранение...'
+        }
+        else {
+            this._buttonSelector.textContent = 'Сохранить'
+        }
     }
 }

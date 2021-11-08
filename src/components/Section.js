@@ -22,7 +22,7 @@ export class Section {
     renderer(data) {
         this._clear();
 
-        data.forEach(item => {
+        data.reverse().forEach(item => {
             this._renderer(item);
         });
     }

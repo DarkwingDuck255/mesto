@@ -18,8 +18,6 @@ import {
     addCardButton,
     profileNameInput,
     profileJobInput,
-    addCardLinkInput,
-    addCardNameTextInput,
     confirmationPopupSelector,
     avatarEditButton,
     avatarPopupElement,
@@ -30,7 +28,6 @@ import {
 
 import Api from "../components/Api.js"
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js"
-// import { acosh } from "core-js/core/number"
 //------------------------API
 const api = new Api({
     baseUrl: "https://mesto.nomoreparties.co/v1/cohort-29",
@@ -42,24 +39,7 @@ const api = new Api({
 
 
 
-// --------------------------- Отрисовка карточек по-умолчанию
-api.getInitialCards()
-    .then((data) => {
-        defaultCards.renderer(data)
-    })
-    .catch((err) => {
-        console.log(`Ошибка загрузки карточек ->${err.status}`)
-    })
 
-
-const defaultCards = new Section({
-    items: initialCards,
-    renderer: (card) => {
-        const newCard = createCard(card)
-        defaultCards.addItem(newCard)
-        
-    }
-}, cardElementContainer)
 
 
 
@@ -95,6 +75,9 @@ function createCard(card) {
                     aCard.likeCount(res.likes.length)
                     console.log(res.likes.length)
                 })
+                .catch((err) => {
+                    console.log(err)
+                })
             }
             else {
                 api.sendLike(aCard.getIdOfCard())
@@ -119,12 +102,15 @@ const imagePopupWindow = new PopupWithImage(imagePopup)
 let userId
 
 api.getUserFromSrv()
-.then((res) => {
-    userInfo.setUserInfo(res)
-    userInfo.setAvatar(res.avatar)
-    userId = res._id
-    console.log(res.avatar)
-  })
+    .then((res) => {
+        userInfo.setUserInfo(res)
+        userInfo.setAvatar(res)
+        userId = res._id
+        console.log(res.avatar)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 
 const userInfo = new UserInfo({
     name: profileNameElement,
@@ -133,18 +119,40 @@ const userInfo = new UserInfo({
   })
   console.log(userInfo)
 
+// --------------------------- Отрисовка карточек по-умолчанию
+api.getInitialCards()
+    .then((data) => {
+        defaultCards.renderer(data)
+    })
+    .catch((err) => {
+        console.log(`Ошибка загрузки карточек ->${err.status}`)
+    })
+
+
+const defaultCards = new Section({
+    items: initialCards,
+    renderer: (card) => {
+        const newCard = createCard(card)
+        defaultCards.addItem(newCard)
+        
+    }
+}, cardElementContainer)
 
 // --------------------------------Попап формы профиля
 
 const profilePopup = new PopupWithForm(profileEditPopup, {
     formSubmit: (profile) =>{
-        profilePopup.savingUx()
+        profilePopup.savingUx(true)
         api.patchProfile(profile)
         .then((res) => {
             userInfo.setUserInfo(res)
+            profilePopup.close()
         })
         .catch((err) => {
             console.log(`ошибка отправки данных профиля на сервер ${err}`)
+        })
+        .finally(()=>{
+            profilePopup.savingUx(false)
         })
     }
     
@@ -164,15 +172,19 @@ const profileInputValuesAndOpenPopup = () => {
 // ---------------------- форма добавления картинки
 const cardPopupForm = new PopupWithForm(addCardPopup, {
     formSubmit: (item) => {
-        cardPopupForm.savingUx()
+        cardPopupForm.savingUx(true)
         api.sendNewImage(item)
         .then((item) => {
             defaultCards.addItem(createCard(item))
+            cardPopupForm.close()
             
         })
 
         .catch((err) => {
             console.log(`ошибка отправки данных карточки на сервер ${err}`)
+        })
+        .finally(()=>{
+            profilePopup.savingUx(false)
         })
         
     }
@@ -181,14 +193,17 @@ const cardPopupForm = new PopupWithForm(addCardPopup, {
 //---------------------------- Попап изменения аватара
 const avatarPopup = new PopupWithForm(avatarPopupElement, {
     formSubmit: (item) => {
-        avatarPopup.savingUx()
+        avatarPopup.savingUx(true)
         api.avatarUpload(item)
         .then((res) =>{
-            userInfo.setAvatar(res.avatar)
+            userInfo.setAvatar(res)
             avatarPopup.close()
         })
         .catch((err) => {
             console.log(`ошибка отправки данных аватарки на сервер ${err}`)
+        })
+        .finally(()=>{
+            profilePopup.savingUx(false)
         })
     }
 })

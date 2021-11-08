@@ -9,8 +9,8 @@ export class Card {
         this._templateSelector = cardTemplateSelector
         this._handleCardClick = handleCardClick
         this._deleteOnClick = deleteOnClick
-
         this._handleLike = handleLike
+        
     }
     _getTemplate() {
             const cardElement = document
@@ -24,6 +24,7 @@ export class Card {
       } 
 
     getCard() {
+        
         this._someCard = this._getTemplate()
         this._someCard.querySelector('.element__image').src = this._cardLink
         this._someCard.querySelector('.element__image').alt = this._cardName
@@ -43,7 +44,6 @@ export class Card {
     //-----------Лайки
 
     _isCardLiked() {
-        // return Boolean(this._likes.find(card => card._id === this._user))
         return this._likes.some((card) =>
             card._id === this._user
         )
